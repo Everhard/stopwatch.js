@@ -1,1 +1,22 @@
 @import url('normalize.css');
+@import url(https://fonts.googleapis.com/css?family=Dhurjati);
+
+#stopwatch {
+    margin: 30px auto 0;
+    text-align: center;
+    font-family: 'Dhurjati', sans-serif;
+    font-size: 110px;
+}
+
+#stopwatch .days:after {
+    content: " ";
+}
+
+#stopwatch .hours:after,
+#stopwatch .minutes:after {
+    content: ":";
+}
+
+#stopwatch .seconds:after {
+    content: ".";
+}

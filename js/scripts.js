@@ -7,11 +7,11 @@ function stopWatchTemplate(id) {
      */
     this.render = function(milliSeconds, seconds, minutes, hours, days) {
         
-        this.milliSeconds.innerHTML = milliSeconds;
-        this.seconds.innerHTML = seconds;
-        this.minutes.innerHTML = minutes;
-        this.hours.innerHTML = hours;
-        this.days.innerHTML = days;
+        this.milliSeconds.innerHTML = this.format(milliSeconds, 3);
+        this.seconds.innerHTML = this.format(seconds, 2);
+        this.minutes.innerHTML = this.format(minutes, 2);
+        this.hours.innerHTML = this.format(hours, 2);
+        this.days.innerHTML = this.format(days, 2);
     }
     
     /*
@@ -36,6 +36,30 @@ function stopWatchTemplate(id) {
         this.template.appendChild(this.minutes);
         this.template.appendChild(this.seconds);
         this.template.appendChild(this.milliSeconds);
+    }
+    
+    /*
+     * Format output values:
+     */
+    this.format = function(value, capacity) {
+        
+        switch (capacity) {
+            case 2:
+                if (value < 10) {
+                    value = "0" + value;
+                }
+                break;
+                
+            case 3:
+                if (value < 10) {
+                    value = "00" + value;
+                }else if (value < 100) {
+                    value = "0" + value;
+                }
+                break;
+        }
+        
+        return value;
     }
     
     /*
