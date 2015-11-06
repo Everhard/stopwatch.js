@@ -70,7 +70,7 @@ function stopWatchTemplate(id) {
 
 window.onload = function() {
     
-    var stopWatchInterval = 30;
+    var stopWatchInterval = 41;
     
     var stopWatch = new stopWatchTemplate("stopwatch");
     var stopWatchCounter = new Date(0);
@@ -89,8 +89,8 @@ window.onload = function() {
         var milliseconds = stopWatchCounter.getMilliseconds();
         var seconds = stopWatchCounter.getSeconds();
         var minutes = stopWatchCounter.getMinutes();
-        var hours = stopWatchCounter.getHours();
-        var days = stopWatchCounter.getDay();
+        var hours = stopWatchCounter.getUTCHours();
+        var days = stopWatchCounter.getDate() - 1;
         
         /*
          * Render stopwatch template:
