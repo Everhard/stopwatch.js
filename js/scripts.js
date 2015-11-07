@@ -1,3 +1,16 @@
+function stopWatch() {
+    
+    this.start = function() {
+        this.startTime = new Date().getTime();
+    }
+    
+    this.getTime = function() {
+        var currentTime = new Date().getTime();
+        var interval = currentTime - this.startTime;
+        return new Date(interval);
+    }
+}
+
 function stopWatchTemplate(id) {
     
     this.template = document.getElementById(id);
@@ -72,30 +85,34 @@ window.onload = function() {
     
     var stopWatchInterval = 41;
     
-    var stopWatch = new stopWatchTemplate("stopwatch");
-    var stopWatchCounter = new Date(0);
+    var stopWatchBlock = new stopWatchTemplate("stopwatch");
+    var stopWatchCounter = new stopWatch();
+    
+    /*
+     * Start stopwatch:
+     */
+    stopWatchCounter.start();
     
     setInterval(function() {
         
         /*
          * Counting imitation:
          */
-        var currentMilliseconds = stopWatchCounter.getMilliseconds();
-        stopWatchCounter.setMilliseconds(currentMilliseconds + stopWatchInterval);
+        var stopWatchTime = stopWatchCounter.getTime();
         
         /*
          * Get new values:
          */
-        var milliseconds = stopWatchCounter.getMilliseconds();
-        var seconds = stopWatchCounter.getSeconds();
-        var minutes = stopWatchCounter.getMinutes();
-        var hours = stopWatchCounter.getUTCHours();
-        var days = stopWatchCounter.getDate() - 1;
+        var milliseconds = stopWatchTime.getMilliseconds();
+        var seconds = stopWatchTime.getSeconds();
+        var minutes = stopWatchTime.getMinutes();
+        var hours = stopWatchTime.getUTCHours();
+        var days = stopWatchTime.getDate() - 1;
         
         /*
          * Render stopwatch template:
          */
-        stopWatch.render(milliseconds, seconds, minutes, hours, days);
+        stopWatchBlock.render(milliseconds, seconds, minutes, hours, days);
         
     }, stopWatchInterval);
     
