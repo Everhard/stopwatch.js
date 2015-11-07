@@ -7,7 +7,24 @@ function stopWatch() {
     this.getTime = function() {
         var currentTime = new Date().getTime();
         var interval = currentTime - this.startTime;
-        return new Date(interval);
+        var stopWatchTime = new Date(interval);
+        
+        /*
+         * Get new values:
+         */
+        var milliseconds = stopWatchTime.getMilliseconds();
+        var seconds = stopWatchTime.getSeconds();
+        var minutes = stopWatchTime.getMinutes();
+        var hours = stopWatchTime.getUTCHours();
+        var days = stopWatchTime.getDate() - 1;
+        
+        return {
+            milliseconds: milliseconds,
+            seconds: seconds,
+            minutes: minutes,
+            hours: hours,
+            days: days
+        };
     }
 }
 
@@ -18,13 +35,13 @@ function stopWatchTemplate(id) {
     /*
      * Render template:
      */
-    this.render = function(milliSeconds, seconds, minutes, hours, days) {
+    this.render = function(stopWatchTime) {
         
-        this.milliSeconds.innerHTML = this.format(milliSeconds, 3);
-        this.seconds.innerHTML = this.format(seconds, 2);
-        this.minutes.innerHTML = this.format(minutes, 2);
-        this.hours.innerHTML = this.format(hours, 2);
-        this.days.innerHTML = this.format(days, 2);
+        this.milliSeconds.innerHTML = this.format(stopWatchTime.milliseconds, 3);
+        this.seconds.innerHTML = this.format(stopWatchTime.seconds, 2);
+        this.minutes.innerHTML = this.format(stopWatchTime.minutes, 2);
+        this.hours.innerHTML = this.format(stopWatchTime.hours, 2);
+        this.days.innerHTML = this.format(stopWatchTime.days, 2);
     }
     
     /*
@@ -95,24 +112,12 @@ window.onload = function() {
     
     setInterval(function() {
         
-        /*
-         * Counting imitation:
-         */
         var stopWatchTime = stopWatchCounter.getTime();
-        
-        /*
-         * Get new values:
-         */
-        var milliseconds = stopWatchTime.getMilliseconds();
-        var seconds = stopWatchTime.getSeconds();
-        var minutes = stopWatchTime.getMinutes();
-        var hours = stopWatchTime.getUTCHours();
-        var days = stopWatchTime.getDate() - 1;
         
         /*
          * Render stopwatch template:
          */
-        stopWatchBlock.render(milliseconds, seconds, minutes, hours, days);
+        stopWatchBlock.render(stopWatchTime);
         
     }, stopWatchInterval);
     
