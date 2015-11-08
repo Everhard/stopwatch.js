@@ -1,7 +1,13 @@
 function stopWatch() {
     
+    this.startTime = 0;
+    
     this.start = function() {
         this.startTime = new Date().getTime();
+    }
+    
+    this.is_started = function() {
+        return this.startTime == 0 ? false : true;
     }
     
     this.getTime = function() {
@@ -96,29 +102,46 @@ function stopWatchTemplate(id) {
      * Constructor:
      */
     this.create();
+    
+    this.render({
+        milliseconds: 0,
+        seconds: 0,
+        minutes: 0,
+        hours: 0,
+        days: 0
+    });
 }
 
-window.onload = function() {
+$(document).ready(function() {
     
     var stopWatchInterval = 41;
     
     var stopWatchBlock = new stopWatchTemplate("stopwatch");
     var stopWatchCounter = new stopWatch();
-    
+
     /*
      * Start stopwatch:
      */
-    stopWatchCounter.start();
+    $(".start-stop").click(function() {
+        
+        if (!stopWatchCounter.is_started()) {
+            
+            stopWatchCounter.start();
+            
+            setInterval(function() {
+                
+                var stopWatchTime = stopWatchCounter.getTime();
+                
+                /*
+                 * Render stopwatch template:
+                 */
+                stopWatchBlock.render(stopWatchTime);
+
+            }, stopWatchInterval);
+        }
+    });
     
-    setInterval(function() {
-        
-        var stopWatchTime = stopWatchCounter.getTime();
-        
-        /*
-         * Render stopwatch template:
-         */
-        stopWatchBlock.render(stopWatchTime);
-        
-    }, stopWatchInterval);
     
-}
+
+    
+});
