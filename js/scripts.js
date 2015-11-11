@@ -1,13 +1,62 @@
-function stopWatch() {
+function stopWatch(id) {
     
+    window.stopWatch = this;
+    
+    this.renderInterval = 41; // Milliseconds
+    this.template = new stopWatchTemplate(id);
+
     this.startTime = 0;
-    
-    this.start = function() {
-        this.startTime = new Date().getTime();
-    }
+    this.pauseTime = 0;
     
     this.is_started = function() {
         return this.startTime == 0 ? false : true;
+    }
+    
+    this.is_paused = function() {
+        return this.pauseTime == 0 ? false : true;
+    }
+    
+    this.start = function() {
+        
+        this.startTime = new Date().getTime();
+        
+        this.process = setInterval(function() {
+
+            var stopWatchTime = window.stopWatch.getTime();
+
+            /*
+             * Render stopwatch template:
+             */
+            window.stopWatch.template.render(stopWatchTime);
+
+        }, this.renderInterval);
+    }
+    
+    this.pause = function() {
+        
+        this.pauseTime = new Date().getTime();
+        
+        clearInterval(this.process);
+    }
+    
+    this.continue = function() {
+        
+        var difference = new Date().getTime() - this.pauseTime;
+        
+        this.startTime += difference;
+        
+        this.pauseTime = 0;
+        
+        this.process = setInterval(function() {
+
+            var stopWatchTime = window.stopWatch.getTime();
+
+            /*
+             * Render stopwatch template:
+             */
+            window.stopWatch.template.render(stopWatchTime);
+
+        }, this.renderInterval);
     }
     
     this.getTime = function() {
@@ -113,35 +162,39 @@ function stopWatchTemplate(id) {
 }
 
 $(document).ready(function() {
-    
-    var stopWatchInterval = 41;
-    
-    var stopWatchBlock = new stopWatchTemplate("stopwatch");
-    var stopWatchCounter = new stopWatch();
 
-    /*
-     * Start stopwatch:
-     */
+    var stopWatchCounter = new stopWatch("stopwatch");
+
     $(".start-stop").click(function() {
-        
+
+       /*
+        * Start stopwatch:
+        */
         if (!stopWatchCounter.is_started()) {
             
             stopWatchCounter.start();
             
-            setInterval(function() {
-                
-                var stopWatchTime = stopWatchCounter.getTime();
-                
-                /*
-                 * Render stopwatch template:
-                 */
-                stopWatchBlock.render(stopWatchTime);
+            $(".start-stop").text("Пауза");
+        }
+        
+        /*
+         * Pause:
+         */        
+        else if (!stopWatchCounter.is_paused()) {
 
-            }, stopWatchInterval);
+            stopWatchCounter.pause();
+            
+            $(".start-stop").text("Продолжить");
+        }
+        
+        /*
+         * Continue:
+         */  
+        else {
+            
+            stopWatchCounter.continue();
+            
+            $(".start-stop").text("Пауза");
         }
     });
-    
-    
-
-    
 });
