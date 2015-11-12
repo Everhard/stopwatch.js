@@ -2,4 +2,4 @@
 
 Online-секундомер.
 
-Адрес: https://stopwatch.pp.ua
+Адрес: https://stop-watch.net
