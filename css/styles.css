@@ -2,10 +2,40 @@
 @import url(https://fonts.googleapis.com/css?family=Dhurjati);
 
 #stopwatch {
-    margin: 30px auto 0;
+    height: 230px;
     text-align: center;
     font-family: 'Dhurjati', sans-serif;
     font-size: 110px;
+    color: #fff;
+    text-shadow: 1px 1px 1px #444;
+    background: linear-gradient(270deg, #22c69c, #5cc606, #7155e3, #07bde6, #d49032);
+    background-size: 1000% 1000%;
+
+    -webkit-animation: stop-watch-bg 59s ease infinite;
+    -moz-animation: stop-watch-bg 59s ease infinite;
+    -o-animation: stop-watch-bg 59s ease infinite;
+    animation: stop-watch-bg 59s ease infinite;
+}
+
+@-webkit-keyframes stop-watch-bg {
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+}
+@-moz-keyframes stop-watch-bg {
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+}
+@-o-keyframes stop-watch-bg {
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+}
+@keyframes stop-watch-bg { 
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
 }
 
 #stopwatch .days:after {
