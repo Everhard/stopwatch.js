@@ -59,6 +59,21 @@ function stopWatch(id) {
         }, this.renderInterval);
     }
     
+    this.stop = function() {
+        this.pauseTime = 0;
+        this.startTime = 0;
+        
+        clearInterval(this.process);
+        
+        this.template.render({
+            milliseconds: 0,
+            seconds: 0,
+            minutes: 0,
+            hours: 0,
+            days: 0
+        });
+    }
+    
     this.getTime = function() {
         var currentTime = new Date().getTime();
         var interval = currentTime - this.startTime;
@@ -196,5 +211,12 @@ $(document).ready(function() {
             
             $(".start-stop").text("Пауза");
         }
+    });
+    
+    $(".reset").click(function() {
+        
+        stopWatchCounter.stop();
+        
+        $(".start-stop").text("Старт");
     });
 });
