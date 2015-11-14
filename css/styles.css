@@ -3,6 +3,7 @@
 
 #stopwatch {
     height: 230px;
+    margin-top: 40px;
     text-align: center;
     font-family: 'Dhurjati', sans-serif;
     font-size: 110px;
@@ -10,7 +11,10 @@
     text-shadow: 1px 1px 1px #444;
     background: linear-gradient(270deg, #22c69c, #5cc606, #7155e3, #07bde6, #d49032);
     background-size: 1000% 1000%;
-
+    box-shadow: 0 3px 8px #444;
+    -webkit-box-shadow: 0 3px 8px #444;
+    -moz-box-shadow: 0 3px 8px #444;
+    
     -webkit-animation: stop-watch-bg 59s ease infinite;
     -moz-animation: stop-watch-bg 59s ease infinite;
     -o-animation: stop-watch-bg 59s ease infinite;
@@ -49,4 +53,15 @@
 
 #stopwatch .seconds:after {
     content: ".";
+}
+
+.controls {
+    margin-top: 30px;
+    text-align: center;
+}
+
+.controls button {
+    display: inline-block;
+    width: 200px;
+    height: 50px;
 }
