@@ -7,6 +7,7 @@ html {
 }
 
 body {
+    min-width: 360px;
     background: url('../images/background.jpg') center bottom no-repeat;
     background-size: cover;
 }
@@ -40,6 +41,20 @@ h1 {
     -moz-animation: stop-watch-bg 59s ease infinite;
     -o-animation: stop-watch-bg 59s ease infinite;
     animation: stop-watch-bg 59s ease infinite;
+}
+
+@media screen and (max-width: 900px) {
+    #stopwatch {
+        height: 160px;
+        font-size: 80px;
+    }
+}
+
+@media screen and (max-width: 650px) {
+    #stopwatch {
+        height: 86px;
+        font-size: 43px;
+    }
 }
 
 @-webkit-keyframes stop-watch-bg {
@@ -109,4 +124,12 @@ h1 {
 
 .controls button:active {
     background: #f2fefc;
+}
+
+@media screen and (max-width: 650px) {
+    .controls button {
+        font-size: 17px;
+        height: 220px;
+        width: 110px;
+    }
 }
