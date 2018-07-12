@@ -1,5 +1,5 @@
 # StopWatch Online
 
-Online-секундомер.
+Stopwatch which you can use for your projects.
 
-Адрес: https://stop-watch.net
+[Click here](https://everhard.github.io/StopWatch-Online/) to see how it looks like.
