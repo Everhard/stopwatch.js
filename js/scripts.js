@@ -189,7 +189,7 @@ $(document).ready(function() {
             
             stopWatchCounter.start();
             
-            $(".start-stop").text("Пауза");
+            $(".start-stop").text("Pause");
         }
         
         /*
@@ -199,7 +199,7 @@ $(document).ready(function() {
 
             stopWatchCounter.pause();
             
-            $(".start-stop").text("Продолжить");
+            $(".start-stop").text("Continue");
         }
         
         /*
@@ -209,7 +209,7 @@ $(document).ready(function() {
             
             stopWatchCounter.continue();
             
-            $(".start-stop").text("Пауза");
+            $(".start-stop").text("Pause");
         }
     });
     
@@ -217,6 +217,6 @@ $(document).ready(function() {
         
         stopWatchCounter.stop();
         
-        $(".start-stop").text("Старт");
+        $(".start-stop").text("Start");
     });
 });
