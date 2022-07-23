@@ -1,37 +1,55 @@
-# StopWatch Online
+# stopwatch.js
 
-Stopwatch which you can use for your projects.
+This is a simple and lightweight library, that adds a stopwatch to an HTML page.
 
-[Click here](https://everhard.github.io/StopWatch-Online/) to see how it looks like.
+Here's a [demo](https://everhard.github.io/StopWatch-Online/).
+
+## How to install
+Just include the library into your HTML page:
+```html
+<script src="js/stopwatch.js"></script>
+```
 
 ## How to use
-Create a new Stopwatch object:
-```javascript
-var stopWatchCounter = new stopWatch("stopwatch-id");
+Add some block element to your HTML and give it some ID:
+```html
+<div id="stopwatch"></div>
 ```
 
-To start the stopwatch use "start" method:
+Now create a `StopWatch` object using an ID as a parameter:
 ```javascript
-stopWatchCounter.start();
+var stopWatch = new StopWatch("stopwatch");
 ```
 
-To pause the stopwatch use "pause" method:
-```javascript
-stopWatchCounter.pause();
+That's it! Now your DOM was changed to the next structure:
+```html
+<div id="stopwatch">
+    <span class="days">00</span>
+    <span class="hours">00</span>
+    <span class="minutes">00</span>
+    <span class="seconds">00</span>
+    <span class="milliseconds">000</span>
+</div>
 ```
 
-To stop the stopwatch use "stop" method:
-```javascript
-stopWatchCounter.stop();
-```
+And you can customize the appearance whatever you like using CSS.
 
-To continue the stopwatch use "continue" method:
-```javascript
-stopWatchCounter.continue();
-```
+### Control
 
+| Method              | Description        |
+|---------------------|--------------------|
+| `stopWatch.start()` | Start a stopwatch. |
+| `stopWatch.pause()` | Pause a stopwatch. |
+| `stopWatch.stop()`  | Stop a stopwatch.  |
 
-To check if the stopwatch started use "is_started" method:
-```javascript
-stopWatchCounter.is_started();
-```
+## Properties
+
+| Properties               | Description                                |
+|--------------------------|--------------------------------------------|
+| `stopWatch.milliseconds` | The value of the *milliseconds* part.      |
+| `stopWatch.seconds`      | The value of the *seconds* part.           |
+| `stopWatch.minutes`      | The value of the *minutes* part.           |
+| `stopWatch.hours`        | The value of the *hours* part.             |
+| `stopWatch.days`         | The value of the *days* part.              |
+| `stopWatch.isRunning`    | Set to `true` when a stopwatch is running. |
+| `stopWatch.isPaused`     | Set to `true` when a stopwatch is paused.  |
