@@ -2,7 +2,7 @@
 
 This is a simple and lightweight library, that adds a stopwatch to an HTML page.
 
-Here's a [demo](https://everhard.github.io/StopWatch-Online/).
+Here's a [demo](https://everhard.github.io/stopwatch.js/).
 
 ## How to install
 Just include the library into your HTML page:
